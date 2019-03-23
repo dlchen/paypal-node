@@ -1,15 +1,18 @@
 'use strict';
 
+const LENGTH = 250;
+const currencies = ['USD', 'JPY', 'EUR'];
+
 class Database {
 
   async query() {
     return {
-      transactions: new Array(250).fill(null).map((_, i) => {
+      transactions: new Array(LENGTH).fill(null).map((_, i) => {
         return {
-          name: `Person ${i}`,
-          date: new Date(2018, 1, 1, i),
+          name: `Person ${LENGTH - i}`,
+          date: new Date(2018, 1, 1, -i),
           amount: i + 0.02,
-          currency: 'USD'
+          currency: currencies[i % currencies.length]
         }
       })
     };
