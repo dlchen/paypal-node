@@ -15,8 +15,9 @@ server.route({
   handler: async (request, h) => {
 
     const db = new Database();
+    const page = request.query.page || 0;
     try {
-      const transactions = await db.query();
+      const transactions = await db.query({ page });
       return transactions;
     }
     catch (error) {
